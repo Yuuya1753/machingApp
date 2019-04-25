@@ -1,0 +1,7 @@
+h1 ユーザー検索 結果
+
+table.table
+	tbody
+		- @users.each do |user|
+			tr.row
+				td.col-md-5= user.name

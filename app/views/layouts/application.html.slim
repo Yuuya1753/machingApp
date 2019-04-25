@@ -1,0 +1,29 @@
+doctype html
+html
+	head
+		meta charset="utf-8"
+		title マッチングアプリ
+		meta name="viewport" content="width=device-width, initial-scale=1.0"
+		= stylesheet_link_tag    "application", media: 'all', 'data-turbolinks-track' => true
+		= javascript_include_tag "application", 'data-turbolinks-track' => true
+		= csrf_meta_tags
+
+	body
+		.app-title.navbar.navbar-expand-md.navbar-light.bg-light
+			- if user_signed_in?
+				.navbar-brand = current_user.name
+
+			ul.navbar-nav.ml-auto
+				- if user_signed_in?
+					li.nav-item= link_to 'HOME', root_path, class: 'nav-link'
+					li.nav-item= link_to 'プロフィール確認', user_path(current_user), class: 'nav-link'
+					li.nav-item= link_to 'ユーザー検索', search_path, class: 'nav-link'
+					li.nav-item= link_to 'コミュニティ検索', root_path, class: 'nav-link'
+					li.nav-item= link_to 'あしあと', root_path, class: 'nav-link'
+					li.nav-item= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link'
+				- else
+					li.nav-item= link_to 'ログイン', new_user_session_path, class: 'nav-link'
+		.container
+			- if flash.notice.present?
+				.alert.alert-success= flash.notice
+			= yield
