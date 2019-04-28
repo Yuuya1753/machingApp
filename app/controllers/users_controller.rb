@@ -30,6 +30,10 @@ class UsersController < ApplicationController
 		@users = @q.result(distinct: true)
 	end
 
+	def other
+		@user = User.find(params[:id])
+	end
+
 	private
 	def user_params
 		params.require(:user).permit(:name, :age, :blood_type, :address, :birthplace, :job, :hobby, :self_introduction, :image)

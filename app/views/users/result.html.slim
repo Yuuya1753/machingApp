@@ -4,4 +4,7 @@ table.table
 	tbody
 		- @users.each do |user|
 			tr.row
-				td.col-md-5= user.name
+				- if !user.image.url.nil?
+				td.col-md-5= image_tag user.image.url
+			tr.row
+				td.col-md-5= link_to user.name, other_path(user.id)
