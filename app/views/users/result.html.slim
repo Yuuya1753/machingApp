@@ -2,9 +2,14 @@ h1 ユーザー検索 結果
 
 table.table
 	tbody
-		- @users.each do |user|
-			tr.row
-				- if !user.image.url.nil?
-				td.col-md-5= image_tag user.image.url
-			tr.row
-				td.col-md-5= link_to user.name, other_path(user.id)
+		- if @users.present?
+			- @users.each do |user|
+				- if user.id != current_user.id
+					tr.row
+						- if !user.image.url.nil?
+						td.col-md-5= image_tag user.image.url(:thumb)
+					tr.row
+						td.col-md-5= link_to user.name, other_path(user.id)
+		- else
+			= "該当するユーザーはいません。"
+= link_to '戻る', search_path, class: 'btn btn-secondary mr-3'
