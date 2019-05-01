@@ -9,7 +9,7 @@ html
 		= csrf_meta_tags
 
 	body
-		.app-title.navbar.navbar-expand-md.navbar-light.bg-light
+		.app-title.navbar.navbar-expand-md.navbar-light.bg-light.sticky-top
 			- if user_signed_in?
 				.navbar-brand = current_user.name
 

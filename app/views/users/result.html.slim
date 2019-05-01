@@ -7,7 +7,7 @@ table.table
 				- if user.id != current_user.id
 					tr.row
 						- if !user.image.url.nil?
-						td.col-md-5= image_tag user.image.url(:thumb)
+							td.col-md-5= image_tag user.image.url(:thumb)
 					tr.row
 						td.col-md-5= link_to user.name, other_path(user.id)
 		- else

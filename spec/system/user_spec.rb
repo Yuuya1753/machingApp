@@ -11,6 +11,18 @@ RSpec.feature 'ユーザーが', type: :feature do
 
 			expect(page).to have_selector ".alert-success", text: "更新しました。"
       # current_user # ログイン済みのユーザー
-    end
+		end
+		
+		scenario 'ユーザーの検索が出来た' do
+			# before do
+				user_2 = FactoryBot.create(:user, name: "テスト2")
+			# end
+			
+			visit search_path
+			fill_in "ユーザー名",	with: "テスト2"
+			click_button "検索する"
+
+			expect(page).to have_content "テスト2"
+		end
   end
 end

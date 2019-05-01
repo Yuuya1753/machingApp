@@ -26,7 +26,7 @@ class UsersController < ApplicationController
 	end
 
 	def result
-		@q = User.search(search_params)
+		@q = User.ransack(search_params)
 		@users = @q.result(distinct: true)
 	end
 

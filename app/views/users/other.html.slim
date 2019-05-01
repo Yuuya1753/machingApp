@@ -5,7 +5,7 @@ table.table
 		tr.row
 			th.col-md-2= User.human_attribute_name(:image)
 			- if !@user.image.url.nil?
-				td.col-md-10= image_tag @user.image.url
+				td.col-md-10= image_tag @user.image.url(:thumb)
 		tr.row
 			th.col-md-2= User.human_attribute_name(:name)
 			td.col-md-10= @user.name
