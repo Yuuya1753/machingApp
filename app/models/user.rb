@@ -6,5 +6,7 @@ class User < ApplicationRecord
 
   mount_uploader :image, ImageUploader
 
+  has_many :footprints, foreign_key: 'user_id', dependent: :destroy
+
   validates :name, uniqueness: true
 end

@@ -1,0 +1,10 @@
+h1 あしあと
+
+table.table
+	tbody
+		- if @footprint_users.present?
+			- @footprint_users.each do |user|
+				tr.row
+					td.col-md-10= link_to user.name, other_path(user.id)
+		- else
+			= "あしあとはありません"
