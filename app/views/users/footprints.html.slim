@@ -3,7 +3,7 @@ h1 あしあと
 - if current_user.footprints.present?
 	- current_user.footprints.reverse.each do |footprint|
 		- user = User.find(footprint.leave_id)
-		- leave_time = (Time.now - footprint.created_at) / 60
+		- leave_time = (Time.zone.now - footprint.created_at) / 60
 		.d-inline-block.mb-3.mr-3.w-25.border.border-dark.rounded
 			- if !user.image.url.nil?
 				.d-inline-block.col-md-auto= image_tag user.image.url(:thumb)
