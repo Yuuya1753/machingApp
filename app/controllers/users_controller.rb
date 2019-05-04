@@ -31,15 +31,9 @@ class UsersController < ApplicationController
 
 	def other
 		@user.footprints.create!(leave_id: current_user.id)
-		# footprint.save
-		# p footprint.errors.full_messages
 	end
 
 	def footprints
-		@footprint_users = []
-		current_user.footprints.each { |footprint|
-			@footprint_users.push(User.find(footprint.leave_id))
-		}
 	end
 
 	private

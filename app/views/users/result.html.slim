@@ -3,10 +3,11 @@ h1 ユーザー検索 結果
 - if @users.present?
 	- @users.each do |user|
 		- if user.id != current_user.id
-			.d-inline-block.w-50
+			.d-inline-block.text-center.mb-3.mr-3.w-25.border.border-dark.rounded
 				- if !user.image.url.nil?
-					.col-md-5= image_tag user.image.url(:thumb)
-				.mb-3.col-md-5= link_to user.name, other_path(user.id)
+					.col-md-auto= image_tag user.image.url(:thumb)
+				.col-md-auto= link_to user.name, other_path(user.id)
 - else
 	= "該当するユーザーはいません。"
+br
 = link_to '戻る', search_path, class: 'btn btn-secondary mr-3'
