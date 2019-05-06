@@ -1,0 +1,17 @@
+h1 コミュニティ作成
+
+- if @community.errors.present?
+	ul#error_explanation
+		- @community.errors.full_messages.each do |message|
+			li= message
+
+= form_with model: @community, local: true do |f|
+	.form-group
+		= f.hidden_field :created_id, value: current_user.id
+	.form-group
+		= f.label :icon, 'コミュニティ画像'
+		= f.file_field :icon, class: 'form-control'
+	.form-group
+		= f.label :name, 'コミュニティ名'
+		= f.text_field :name, class: 'form-control'
+	= f.submit nil, class: 'btn btn-primary'

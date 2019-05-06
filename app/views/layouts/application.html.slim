@@ -18,6 +18,7 @@ html
 					li.nav-item= link_to 'HOME', root_path, class: 'nav-link'
 					li.nav-item= link_to 'プロフィール確認', user_path(current_user), class: 'nav-link'
 					li.nav-item= link_to 'ユーザー検索', search_path, class: 'nav-link'
+					li.nav-item= link_to 'コミュニティ作成', new_community_path, class: 'nav-link'
 					li.nav-item= link_to 'コミュニティ検索', root_path, class: 'nav-link'
 					li.nav-item= link_to 'あしあと', footprints_path, class: 'nav-link'
 					li.nav-item= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link'
