@@ -18,6 +18,10 @@ ja:
         hobby: 趣味
         self_introduction: 自己紹介
         image: プロフィール画像
+      community:
+        name: コミュニティ名
+        created_id: 作成者
+        icon: コミュニティ画像
   date:
     abbr_day_names:
     - 日

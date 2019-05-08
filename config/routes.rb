@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
   get 'joins/create'
   get 'home/index'
-  get 'search', to: 'users#search'
-  get 'result', to: 'users#result'
+  get 'users/search'
+  post 'users/result'
   get 'other/:id', to: 'users#other', as: 'other'
   get 'footprints', to: 'users#footprints', as: 'footprints'
+  get 'communities/search'
+  post 'communities/result'
   resources :communities
   devise_for :users
   resources :users, expect: [:create, :destroy]

@@ -1,0 +1,13 @@
+h1 コミュニティプロフィール確認
+
+table.table
+	tbody
+		tr.row
+			th.col-md-auto= Community.human_attribute_name(:icon)
+			- if !@community.icon.url.nil?
+				td.col-md-auto= image_tag @community.icon.url(:thumb)
+		tr.row
+			th.col-md-auto= Community.human_attribute_name(:name)
+			td.col-md-auto= @community.name
+
+= link_to '編集する', edit_community_path(@community), class: 'btn btn-primary mr-3'

@@ -1,6 +1,6 @@
 h1 ユーザー検索 条件入力
 
-= search_form_for(@q, url:result_path) do |f|
+= search_form_for(@q, url:users_result_path, html: { method: :post }) do |f|
 	.form-group
 		= f.label :name_cont, 'ユーザー名'
 		br
