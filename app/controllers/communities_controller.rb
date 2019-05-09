@@ -1,5 +1,5 @@
 class CommunitiesController < ApplicationController
-	before_action :set_community, only: [:edit, :update, :show]
+	before_action :set_community, only: [:edit, :update, :show, :join]
 	def new
 		@community = Community.new
 	end
@@ -27,6 +27,17 @@ class CommunitiesController < ApplicationController
 	end
 
 	def show
+		ids = @community.users.ids.sort
+		if ids.bsearch_index { |i| i == current_user.id }.nil?
+			@member = false
+		else
+			@member = true
+		end
+	end
+
+	def join
+		@community.joins.create(user: current_user)
+		redirect_to community_path(@community), notice: "#{@community.name}に参加しました。"
 	end
 
 	def destroy

@@ -1,4 +1,4 @@
-h1 コミュニティプロフィール確認
+h1 コミュニティ詳細
 
 table.table
 	tbody
@@ -9,5 +9,17 @@ table.table
 		tr.row
 			th.col-md-auto= Community.human_attribute_name(:name)
 			td.col-md-auto= @community.name
-
-= link_to '編集する', edit_community_path(@community), class: 'btn btn-primary mr-3'
+		- if @member
+			tr.row
+				th.col-md-auto= "参加メンバー一覧"
+				td.col-md-10
+					- @community.users.each do |user|
+						- if user.id != current_user.id
+							.d-inline-block.text-center.mb-3.mr-3.w-25.border.border-dark.rounded
+								- if !user.image.url.nil?
+									.col-md-auto= image_tag user.image.url(:thumb)
+								.col-md-auto= link_to user.name, other_path(user.id)
+- if @community.created_id == current_user.id
+	= link_to '編集する', edit_community_path(@community), class: 'btn btn-primary mr-3'
+- elsif !@member
+	= button_to '参加する', {controller: 'communities', action: 'join'}, {method: :get, params: {id: @community.id}, class: 'btn btn-primary mr-3'}

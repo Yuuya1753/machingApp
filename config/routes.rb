@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'footprints', to: 'users#footprints', as: 'footprints'
   get 'communities/search'
   post 'communities/result'
+  get 'communities/join/:id', to: 'communities#join'
   resources :communities
   devise_for :users
   resources :users, expect: [:create, :destroy]
