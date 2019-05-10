@@ -1,5 +1,5 @@
 class CommunitiesController < ApplicationController
-	before_action :set_community, only: [:edit, :update, :show, :join]
+	before_action :set_community, only: [:edit, :update, :show, :join, :destroy]
 	def new
 		@community = Community.new
 	end
@@ -9,7 +9,7 @@ class CommunitiesController < ApplicationController
 		
 		if @community.save
 			@community.joins.create(user: current_user)
-			redirect_to root_path, notice: "#{@community.name}を作成しました。"
+			redirect_to community_path(@community), notice: "#{@community.name}を作成しました。"
 		else
 			render :new
 		end
@@ -41,6 +41,8 @@ class CommunitiesController < ApplicationController
 	end
 
 	def destroy
+		@community.destroy
+		redirect_to communities_search_path, notice: "#{@community.name}を削除しました。"
 	end
 
 	def search

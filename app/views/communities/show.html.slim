@@ -21,5 +21,6 @@ table.table
 								.col-md-auto= link_to user.name, other_path(user.id)
 - if @community.created_id == current_user.id
 	= link_to '編集する', edit_community_path(@community), class: 'btn btn-primary mr-3'
+	= link_to '削除する', @community, method: :delete, data: { confirm: "コミュニティを削除します。よろしいですか？" }, class: 'btn btn-danger'
 - elsif !@member
 	= button_to '参加する', {controller: 'communities', action: 'join'}, {method: :get, params: {id: @community.id}, class: 'btn btn-primary mr-3'}
