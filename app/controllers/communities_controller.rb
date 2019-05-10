@@ -28,7 +28,8 @@ class CommunitiesController < ApplicationController
 
 	def show
 		ids = @community.users.ids.sort
-		if ids.bsearch_index { |i| i == current_user.id }.nil?
+		
+		if ids.find { |i| i == current_user.id }.nil?
 			@member = false
 		else
 			@member = true

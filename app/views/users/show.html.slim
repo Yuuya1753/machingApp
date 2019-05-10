@@ -30,5 +30,13 @@ table.table
 		tr.row
 			th.col-md-2= User.human_attribute_name(:self_introduction)
 			td.col-md-10= simple_format(h(@user.self_introduction), {}, sanitize: false, wrapper_tag: "div")
+		tr.row
+			th.col-md-2= '参加コミュニティ'
+			td.col-md-10
+				- @user.communities.each do |community|
+						.d-inline-block.text-center.mb-3.mr-3.w-25.border.border-dark.rounded
+							- if !community.icon.url.nil?
+								.col-md-auto= image_tag community.icon.url(:thumb)
+							.col-md-auto= link_to community.name, community_path(community.id)
 
 = link_to '編集する', edit_user_path(@user), class: 'btn btn-primary mr-3'
