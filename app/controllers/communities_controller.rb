@@ -27,13 +27,19 @@ class CommunitiesController < ApplicationController
 	end
 
 	def show
-		ids = @community.users.ids.sort
-		
-		if ids.find { |i| i == current_user.id }.nil?
-			@member = false
-		else
+		joins = Join.where('user_id = ? and community_id = ?', current_user.id, @community.id).size
+		if joins > 0
 			@member = true
+		else
+			@member = false
 		end
+		# ids = @community.users.ids.sort
+		
+		# if ids.find { |i| i == current_user.id }.nil?
+		# 	@member = false
+		# else
+		# 	@member = true
+		# end
 	end
 
 	def join
