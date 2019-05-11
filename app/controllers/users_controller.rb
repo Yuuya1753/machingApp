@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	before_action :set_user, only: [:show, :edit, :update, :other]
+	before_action :set_user, only: [:show, :edit, :update, :other, :like, :show_likes]
 
 	def index
 		
@@ -31,9 +31,25 @@ class UsersController < ApplicationController
 
 	def other
 		@user.footprints.create!(leave_id: current_user.id)
+		like = Like.where('user_id = ? and like_user_id = ?', current_user.id, @user.id)
+		if like.size > 0
+			@already_like = true
+		else
+			@already_like = false
+		end
 	end
 
 	def footprints
+	end
+
+	def like
+		current_user.likes.create!(like_user: @user)
+		redirect_to other_path(@user), notice: "#{@user.name}さんに「いいね！」しました。"
+	end
+
+	def show_likes
+		@like_me_count = Like.where('user_id = ?', current_user.id).size
+		@like_other_count = Like.where('like_user_id = ?', current_user.id).size
 	end
 
 	private
