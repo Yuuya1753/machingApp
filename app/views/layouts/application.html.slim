@@ -21,6 +21,7 @@ html
 					li.nav-item= link_to 'コミュニティ作成', new_community_path, class: 'nav-link'
 					li.nav-item= link_to 'コミュニティ検索', communities_search_path, class: 'nav-link'
 					li.nav-item= link_to 'いいね！確認', show_likes_path(current_user), class: 'nav-link'
+					li.nav-item= link_to 'メッセージ確認', show_matches_path(current_user), class: 'nav-link'
 					li.nav-item= link_to 'あしあと', footprints_path, class: 'nav-link'
 					li.nav-item= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link'
 				- else

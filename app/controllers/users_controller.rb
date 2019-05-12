@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	before_action :set_user, only: [:show, :edit, :update, :other, :like, :show_likes]
+	before_action :set_user, only: [:show, :edit, :update, :other, :like, :show_likes, :show_matches]
 
 	def index
 		
@@ -43,13 +43,27 @@ class UsersController < ApplicationController
 	end
 
 	def like
-		current_user.likes.create!(like_user: @user)
-		redirect_to other_path(@user), notice: "#{@user.name}さんに「いいね！」しました。"
+		current_user.likes_from.create!(like_other: @user)
+		like_count = Like.where('user_id = ? and like_user_id = ?', @user.id, current_user.id).size
+		if like_count > 0
+			match(@user)
+			redirect_to other_path(@user), notice: "#{@user.name}さんとのマッチングが成立しました。"
+		else
+			redirect_to other_path(@user), notice: "#{@user.name}さんに「いいね！」しました。"
+		end
 	end
 
 	def show_likes
 		@like_me_count = Like.where('user_id = ?', current_user.id).size
 		@like_other_count = Like.where('like_user_id = ?', current_user.id).size
+	end
+
+	def match(user)
+		current_user.matches_from.create!(match_to_user: user)
+	end
+
+	def show_matches
+
 	end
 
 	private
