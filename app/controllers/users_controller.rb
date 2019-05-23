@@ -63,7 +63,7 @@ class UsersController < ApplicationController
 	end
 
 	def show_matches
-
+		@matches = Match.where('from_user_id = ? or to_user_id = ?', current_user.id, current_user.id)
 	end
 
 	private

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'matches/show/:id', to: 'matches#show', as: 'matches/show'
   get 'likes/create'
   get 'joins/create'
   get 'home/index'
@@ -13,6 +14,7 @@ Rails.application.routes.draw do
   get 'users/show_likes/:id', to: 'users#show_likes', as: 'show_likes'
   get 'users/show_matches/:id', to: 'users#show_matches', as: 'show_matches'
   resources :communities
+  resources :messages
   devise_for :users
   resources :users, expect: [:create, :destroy]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

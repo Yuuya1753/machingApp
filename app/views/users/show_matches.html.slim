@@ -1,11 +1,14 @@
 h1 マッチング一覧
 
-- if current_user.match_to_users.present?
-	- current_user.match_to_users.reverse.each do |matching_user|
-		- user = User.find(matching_user.id)
+- if @matches.present?
+	- @matches.each do |matching|
+		- if matching.from_user_id == current_user.id
+			- matching_user = User.find(matching.to_user_id)
+		- else
+			- matching_user = User.find(matching.from_user_id)
 		.d-inline-block.text-center.mb-3.mr-3.w-25.border.border-dark.rounded
-			- if !user.image.url.nil?
-				.d-inline-block.col-md-auto= image_tag user.image.url(:thumb)
-			.col-md-auto= link_to user.name, other_path(user.id)
+			- if !matching_user.image.url.nil?
+				.d-inline-block.col-md-auto= image_tag matching_user.image.url(:thumb)
+			.col-md-auto= link_to matching_user.name, matches_show_path(matching.id)
 - else
 	= "マッチングしたユーザーはいません。"

@@ -1,0 +1,42 @@
+= stylesheet_link_tag    "matches", media: 'all'
+
+h1 メッセージ
+
+#message-area
+	table.table.table-borderless
+		tbody
+			- @match.messages.each do |message|
+				tr
+					td.pb-0
+						- messageTimeYmd = message.created_at.in_time_zone("Tokyo").strftime("%Y/%m/%d")
+						- messageTimeHm = message.created_at.in_time_zone("Tokyo").strftime("%H:%M")
+						- if messageTimeYmd != @beforeTime
+							- @beforeTime = messageTimeYmd
+							.w-100.text-center.border-top
+								= messageTimeYmd
+						- if message.speaker_id == current_user.id
+							div id="msges-#{message.id}" class="ml-1 w-25 text-right border border-dark rounded float-right"
+								= message.text
+							.float-right = messageTimeHm
+							tr
+								td.speaker-name.text-right.float-right.pt-0
+									= current_user.name
+						- else
+							- speaker = User.find(message.speaker_id)
+							div id="msges-#{message.id}" class="mr-1 w-25 text-left border border-dark rounded float-left"
+								= message.text
+							.float-left = messageTimeHm
+							tr
+								td.speaker-name.text-left.float-left.pt-0
+									= speaker.name
+
+#form-area.fixed-bottom.bg-white.ml-auto.mr-auto.pb-2
+	= form_with model: Message.new, local: true do |f|
+		.form-group
+			= f.hidden_field :matching_id, value: @match.id
+		.form-group
+			= f.hidden_field :speaker_id, value: current_user.id
+		.form-group
+			= f.text_area :text, rows: 5, maxlength: 255, class: 'form-control', id: 'text'
+		.count.nav.justify-content-end
+		= f.submit '送信', class: 'btn btn-primary'
