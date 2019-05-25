@@ -7,7 +7,7 @@ h1 メッセージ
 		tbody
 			- @match.messages.each do |message|
 				tr
-					td.pb-0
+					td.pb-1
 						- messageTimeYmd = message.created_at.in_time_zone("Tokyo").strftime("%Y/%m/%d")
 						- messageTimeHm = message.created_at.in_time_zone("Tokyo").strftime("%H:%M")
 						- if messageTimeYmd != @beforeTime
@@ -15,7 +15,10 @@ h1 メッセージ
 							.w-100.text-center.border-top
 								= messageTimeYmd
 						- if message.speaker_id == current_user.id
-							div id="msges-#{message.id}" class="ml-1 w-25 text-right border border-dark rounded float-right"
+							- if !current_user.image.nil?
+								.speaker-icon.text-right.float-right.pt-0.pl-0.pb-0
+									= image_tag current_user.image.url(:thumb), size: "50x50"
+							div id="msges-#{message.id}" class="pr-1 mr-1 ml-1 w-25 text-right border border-dark rounded float-right"
 								= message.text
 							.float-right = messageTimeHm
 							tr
@@ -23,7 +26,10 @@ h1 メッセージ
 									= current_user.name
 						- else
 							- speaker = User.find(message.speaker_id)
-							div id="msges-#{message.id}" class="mr-1 w-25 text-left border border-dark rounded float-left"
+							- if !speaker.image.nil?
+								.speaker-icon.text-left.float-left.pt-0.pr-0.pb-0
+									= image_tag speaker.image.url(:thumb), size: "50x50"
+							div id="msges-#{message.id}" class="pl-1 mr-1 ml-1 w-25 text-left border border-dark rounded float-left"
 								= message.text
 							.float-left = messageTimeHm
 							tr
