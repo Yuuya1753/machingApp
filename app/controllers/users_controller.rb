@@ -31,6 +31,7 @@ class UsersController < ApplicationController
 
 	def other
 		@user.footprints.create!(leave_id: current_user.id)
+		@user.information.create!(content: "#{current_user.name}さんのあしあとがあります。")
 		like = Like.where('user_id = ? and like_user_id = ?', current_user.id, @user.id)
 		if like.size > 0
 			@already_like = true
@@ -49,6 +50,7 @@ class UsersController < ApplicationController
 			match(@user)
 			redirect_to other_path(@user), notice: "#{@user.name}さんとのマッチングが成立しました。"
 		else
+			@user.information.create!(content: "#{current_user.name}さんから「いいね！」されました。")
 			redirect_to other_path(@user), notice: "#{@user.name}さんに「いいね！」しました。"
 		end
 	end
@@ -57,25 +59,26 @@ class UsersController < ApplicationController
 		@like_me_count = Like.where('user_id = ?', current_user.id).size
 		@like_other_count = Like.where('like_user_id = ?', current_user.id).size
 	end
-
-	def match(user)
-		current_user.matches_from.create!(match_to_user: user)
-	end
-
+	
 	def show_matches
 		@matches = Match.where('from_user_id = ? or to_user_id = ?', current_user.id, current_user.id)
 	end
-
+	
 	private
 	def set_user
 		@user = User.find(params[:id])
 	end
-
+	
 	def user_params
 		params.require(:user).permit(:name, :age, :blood_type, :address, :birthplace, :job, :hobby, :self_introduction, :image)
 	end
-
+	
 	def search_params
 		params.require(:q).permit(:name_cont, :age_eq, :blood_type_eq, :address_eq, :birthplace_eq, :job_cont, :hobby_cont)
+	end
+
+	def match(user)
+		current_user.matches_from.create!(match_to_user: user)
+		user.information.create!(content: "#{current_user.name}さんとのマッチングが成立しました。")
 	end
 end

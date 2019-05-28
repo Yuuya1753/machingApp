@@ -1,2 +1,39 @@
-h1 Home#index
-p Find me in app/views/home/index.html.slim
+= stylesheet_link_tag    "home", media: 'all'
+
+#title
+	br
+	h1.text-center マッチングアプリ
+	br
+#profile
+	table.table.table-borderless.border.text-center
+		tr
+			td.pb-0.align-middle
+				= link_to image_tag(current_user.image.url), user_path(current_user.id)
+			td.p-0.w-50 rowspan="2"
+				table.table.table-bordered.mb-0
+					th.thead-dark.text-center.border-bottom.table-secondary = "通知"
+					tr
+						td#info-table.p-0
+							.overflow-auto#info-div
+								table.table.table-borderless.mb-0.table-striped
+									- if current_user.information.present?
+										- current_user.information.reverse.each do |info|
+											tr
+												td.border-top.border-bottom.text-left.pl-5
+													= "#{info.content}　"
+												td.border-top.border-bottom.text-right.pr-5
+													- info_time = (Time.zone.now - info.created_at).floor
+													- if info_time >= 86400
+														= "#{(info_time / 86400).floor}日前"
+													- elsif info_time >= 3600 && info_time < 86400
+														= "#{(info_time / 3600).floor}時間前"
+													- elsif info_time >= 60 && info_time < 3600
+														= "#{(info_time / 60).floor}分前"
+													- else
+														= "#{info_time}秒前"
+									- else
+										tr.bg-white
+											td = "通知はありません。"
+		tr
+			td.pt-0.align-top
+				p = current_user.name

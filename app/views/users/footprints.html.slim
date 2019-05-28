@@ -4,7 +4,7 @@ h1 あしあと
 	- current_user.footprints.reverse.each do |footprint|
 		- user = User.find(footprint.leave_id)
 		- leave_time = (Time.zone.now - footprint.created_at).floor / 60
-		.d-inline-block.mb-3.mr-3.w-25.border.border-dark.rounded
+		.d-inline-block.mb-3.mr-3.w-25.border.border-dark.rounded.text-center
 			- if !user.image.url.nil?
 				.d-inline-block.col-md-auto= image_tag user.image.url(:thumb)
 			- if leave_time >= 1440
@@ -13,6 +13,6 @@ h1 あしあと
 				.d-inline-block.col-md-auto.float-right= "#{leave_time / 60}時間前"
 			- else
 				.d-inline-block.col-md-auto.float-right= "#{leave_time}分前"
-			.col-md-auto= link_to user.name, other_path(user.id)
+			.col-md-auto.text-left.ml-4.pl-5= link_to user.name, other_path(user.id)
 - else
 	= "あしあとはありません"

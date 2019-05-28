@@ -17,6 +17,7 @@ class User < ApplicationRecord
   has_many :matches_to, class_name: "Match", foreign_key: 'to_user_id', dependent: :destroy
   has_many :match_to_users, through: :matches_from, source: :match_to_user
   has_many :match_from_users, through: :matches_to, source: :match_from_user
+  has_many :information, foreign_key: 'user_id'
 
   validates :name, uniqueness: true
 end
