@@ -9,4 +9,4 @@ h1 コミュニティ検索 結果
 - else
 	= "該当するコミュニティはありません。"
 br
-= link_to '戻る', communities_search_path, class: 'btn btn-secondary mr-3'
+= link_to '戻る', communities_search_path, remote: true, class: 'btn btn-secondary mr-3'

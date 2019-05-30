@@ -21,12 +21,13 @@ class UsersController < ApplicationController
 	end
 
 	def search
+		if params[:q].present?
+			@display_result = true
+		else
+			@display_result = false
+		end
 		@q = User.ransack(params[:q])
-	end
-
-	def result
-		@q = User.ransack(search_params)
-		@users = @q.result(distinct: true)
+		@users = @q.result(distinct: true).page(params[:page])
 	end
 
 	def other
@@ -41,6 +42,7 @@ class UsersController < ApplicationController
 	end
 
 	def footprints
+		@footprints = Kaminari.paginate_array(current_user.footprints.reverse).page(params[:page])
 	end
 
 	def like

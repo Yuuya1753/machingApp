@@ -1,0 +1,8 @@
+h1 コミュニティ検索 条件入力
+
+= search_form_for(@q, url:communities_search_path, remote: true, html: { method: :post }) do |f|
+	.form-group
+		= f.label :name_cont, 'コミュニティ名'
+		br
+		= f.search_field :name_cont, class: 'form-control'
+	= f.submit '検索する', class: 'btn btn-primary'

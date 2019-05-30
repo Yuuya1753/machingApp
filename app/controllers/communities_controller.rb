@@ -53,13 +53,14 @@ class CommunitiesController < ApplicationController
 	end
 
 	def search
+		if params[:q].present?
+			@display_result = true
+		else
+			@display_result = false
+		end
 		@q = Community.ransack(params[:q])
-	end
-
-	def result
-		@q = Community.ransack(search_params)
 		@q.sorts = 'created_at desc' if @q.sorts.empty?
-		@communities = @q.result(distinct: true)
+		@communities = @q.result(distinct: true).page(params[:page])
 	end
 
 	private

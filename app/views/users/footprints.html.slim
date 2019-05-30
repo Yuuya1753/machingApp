@@ -1,7 +1,7 @@
 h1 あしあと
 
-- if current_user.footprints.present?
-	- current_user.footprints.reverse.each do |footprint|
+- if @footprints.present?
+	- @footprints.each do |footprint|
 		- user = User.find(footprint.leave_id)
 		- leave_time = (Time.zone.now - footprint.created_at).floor / 60
 		.d-inline-block.mb-3.mr-3.w-25.border.border-dark.rounded.text-center
@@ -14,5 +14,6 @@ h1 あしあと
 			- else
 				.d-inline-block.col-md-auto.float-right= "#{leave_time}分前"
 			.col-md-auto.text-left.ml-4.pl-5= link_to user.name, other_path(user.id)
+	= paginate @footprints
 - else
 	= "あしあとはありません"

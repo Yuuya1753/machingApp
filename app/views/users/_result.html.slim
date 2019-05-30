@@ -7,7 +7,8 @@ h1 ユーザー検索 結果
 				- if !user.image.url.nil?
 					.col-md-auto= image_tag user.image.url(:thumb)
 				.col-md-auto= link_to user.name, other_path(user.id)
+	= paginate @users, remote: true
 - else
 	= "該当するユーザーはいません。"
 br
-= link_to '戻る', users_search_path, class: 'btn btn-secondary mr-3'
+= link_to '戻る', users_search_path, remote: true, class: 'btn btn-secondary mr-3', id: 'return-search-form'
