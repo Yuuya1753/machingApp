@@ -27,6 +27,7 @@ class UsersController < ApplicationController
 			@display_result = false
 		end
 		@q = User.ransack(params[:q])
+		@q.sorts = 'created_at desc' if @q.sorts.empty?
 		@users = @q.result(distinct: true).page(params[:page])
 	end
 

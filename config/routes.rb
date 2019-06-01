@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   get 'matches/show/:id', to: 'matches#show', as: 'matches/show'
+  post 'messages/count_message'
+  post 'messages/new_display'
   get 'likes/create'
   get 'joins/create'
   get 'home/index'

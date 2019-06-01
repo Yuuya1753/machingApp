@@ -10,6 +10,12 @@ class MessagesController < ApplicationController
 		end
 	end
 
+	def count_message
+		@count = Message.where('id > ? and matching_id = ?', params[:message_id], params[:matching_id]).size
+		p @count
+		return @count
+	end
+
 	private
 	def message_params
 		params.require(:message).permit(:matching_id, :text, :speaker_id)

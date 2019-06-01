@@ -4,6 +4,10 @@ class MatchesController < ApplicationController
 		@beforeTime = "9999/99/99"
 	end
 
+	def new_display
+
+	end
+
 	private
 	def set_match
 		@match = Match.find(params[:id])
