@@ -12,7 +12,7 @@
 				- current_user.like_others.each do |like_other|
 					.d-inline-block.text-center.mb-3.mr-3.w-25.border.border-dark.rounded
 							- if !like_other.image.url.nil?
-								.col-md-auto= image_tag like_other.image.url(:thumb)
+								.col-md-auto= link_to image_tag(like_other.image.url(:thumb)), other_path(like_other.id)
 							.col-md-auto= link_to like_other.name, other_path(like_other.id)
 			- else
 				= "いいね！をしたユーザーはいません。"
@@ -22,7 +22,7 @@
 				- current_user.like_us.each do |like_me|
 					.d-inline-block.text-center.mb-3.mr-3.w-25.border.border-dark.rounded
 							- if !like_me.image.url.nil?
-								.col-md-auto= image_tag like_me.image.url(:thumb)
+								.col-md-auto= link_to image_tag(like_me.image.url(:thumb)), other_path(like_me.id)
 							.col-md-auto= link_to like_me.name, other_path(like_me.id)
 			- else
 				= "いいね！されたユーザーはいません。"

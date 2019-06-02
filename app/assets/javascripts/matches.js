@@ -1,4 +1,5 @@
 var pattern = new RegExp("/matches/show/*");
+var interval;
 if(location.pathname.match(pattern)) {
 	$(function () {
 		$(window).scroll(function() {
@@ -13,7 +14,7 @@ if(location.pathname.match(pattern)) {
 			$("div.count.nav.justify-content-end").text(count + " / 255文字");
 		});
 
-		setInterval(function() {
+		interval = setInterval(function() {
 			$.ajax({
 				url: "/messages/count_message",
 				type: "POST",
@@ -26,4 +27,6 @@ if(location.pathname.match(pattern)) {
 			});
 		}, 10000);
 	});
+} else {
+	clearInterval(interval);
 }
