@@ -1,4 +1,5 @@
-if(location.pathname == "/matches/show") {
+var pattern = new RegExp("/matches/show/*");
+if(location.pathname.match(pattern)) {
 	$(function () {
 		$(window).scroll(function() {
 			$("#new-message").offset({
