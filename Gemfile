@@ -90,8 +90,6 @@ gem 'kaminari-bootstrap', '~> 3.0.1'
 
 gem 'dotenv-rails'
 
+gem 'rails_12factor', group: :production
 gem 'platform-api', github: 'jalada/platform-api', branch: 'master'
-group :production do
-  gem 'rails_12factor'
-  gem 'letsencrypt-rails-heroku'
-end
+gem 'letsencrypt-rails-heroku', group: 'production'
