@@ -103,4 +103,9 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.middleware.use Letsencrypt::Middleware
+
+  config.force_ssl = true
+  config.ssl_options = { redirect: { exclude: -> request { request.path =~ /^.well-known\/acme-challenge/ } } }
 end
