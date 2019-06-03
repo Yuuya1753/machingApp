@@ -63,6 +63,16 @@ class CommunitiesController < ApplicationController
 		@communities = @q.result(distinct: true).page(params[:page])
 	end
 
+	def download
+		if current_user.nil?
+			render :plain => "Access denied. Unauthorized access.", :status => :unauthorizd
+		else
+			path = "./" + request.fullpath
+			send_file path, :x_sendfile => true
+		end
+		fresh_when(last_modified: File.mtime(path))
+	end
+
 	private
 	def community_params
 		params.require(:community).permit(:created_id, :name, :icon)

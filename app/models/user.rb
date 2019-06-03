@@ -6,6 +6,11 @@ class User < ApplicationRecord
 
   mount_uploader :image, ImageUploader
 
+  # 5MB以上のファイルはUPLOADできないように
+  def size_range
+    1..5.megabytes
+  end
+
   has_many :footprints, foreign_key: 'user_id', dependent: :destroy
   has_many :joins, foreign_key: 'user_id'
   has_many :communities, through: :joins

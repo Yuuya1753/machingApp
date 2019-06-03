@@ -66,6 +66,16 @@ class UsersController < ApplicationController
 	def show_matches
 		@matches = Match.where('from_user_id = ? or to_user_id = ?', current_user.id, current_user.id)
 	end
+
+	def download
+		if current_user.nil?
+			render :plain => "Access denied. Unauthorized access.", :status => :unauthorizd
+		else
+			path = "./" + request.fullpath
+			send_file path, :x_sendfile => true
+		end
+		fresh_when(last_modified: File.mtime(path))
+	end
 	
 	private
 	def set_user
