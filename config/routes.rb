@@ -23,8 +23,6 @@ Rails.application.routes.draw do
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
-  # ssl証明書発行用
-  get ".well-known/acme-challenge/:id" => "home#letsencrypt"
 
   resources :users, expect: [:create, :destroy]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
