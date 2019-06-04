@@ -19,7 +19,12 @@ Rails.application.routes.draw do
   get 'users/show_matches/:id', to: 'users#show_matches', as: 'show_matches'
   resources :communities
   resources :messages
-  devise_for :users
+  devise_for :users, :controllers => {
+    confirmations: 'users/confirmations',
+    registrations: 'users/registrations',
+    sessions: 'users/sessions',
+    passwords: 'users/passwords'
+  }
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
