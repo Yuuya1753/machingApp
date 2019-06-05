@@ -92,7 +92,7 @@ gem 'dotenv-rails'
 
 gem 'rails_12factor', group: :production
 
-gem 'omniauth', '< 1.9.0'
+gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'font-awesome-sass'
