@@ -2,7 +2,8 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable
+         :recoverable, :rememberable, :validatable, :confirmable,
+         :omniauthable
 
   mount_uploader :image, ImageUploader
 
@@ -25,4 +26,34 @@ class User < ApplicationRecord
   has_many :information, foreign_key: 'user_id'
 
   validates :name, uniqueness: true
+
+  class << self
+    def find_or_create_for_oauth(auth)
+      user = find_or_create_by!(name: auth.info.name) do |user|
+        user.provider = auth.provider
+        user.uid = auth.uid
+        user.name = auth.info.name
+        user.email = User.dummy_email(auth)
+        password = Devise.friendly_token[0..5]
+        logger.debug password
+        user.password = password
+      end
+      user.skip_confirmation!
+      user.save
+      user
+    end
+
+
+    def dummy_email(auth)
+      "#{auth.uid}-#{auth.provider}@example.com"
+    end
+
+    # def new_with_session(params, session)
+    #   if user_attributes = session['devise.user_attributes']
+    #     new(user_attributes) { |user| user.attributes = params }
+    #   else
+    #     super
+    #   end
+    # end
+  end
 end

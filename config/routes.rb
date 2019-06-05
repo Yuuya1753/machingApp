@@ -23,7 +23,8 @@ Rails.application.routes.draw do
     confirmations: 'users/confirmations',
     registrations: 'users/registrations',
     sessions: 'users/sessions',
-    passwords: 'users/passwords'
+    passwords: 'users/passwords',
+    omniauth_callbacks: 'users/omniauth_callbacks'
   }
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"

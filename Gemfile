@@ -91,3 +91,8 @@ gem 'kaminari-bootstrap', '~> 3.0.1'
 gem 'dotenv-rails'
 
 gem 'rails_12factor', group: :production
+
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+gem 'font-awesome-sass'
