@@ -299,6 +299,7 @@ Devise.setup do |config|
   # config.sign_in_after_change_password = true
 
   if Rails.env.production?
+    config.omniauth :twitter, ENV['TWITTER_API_ID'], ENV['TWITTER_API_SECRET']
   else
     config.omniauth :twitter, ENV['TWITTER_API_ID_DEV'], ENV['TWITTER_API_SECRET_DEV']
   end

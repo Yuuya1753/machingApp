@@ -5,7 +5,7 @@
     - resource_class.omniauth_providers.each do |provider|
       - case OmniAuth::Utils.camelize(provider)
       - when 'Twitter'
-        = link_to omniauth_authorize_path(resource_name, provider), class: 'btn btn-social btn-twitter' do
+        = link_to omniauth_authorize_path(resource_name, provider), method: :post, class: 'btn btn-social btn-twitter' do
           i.fab.fa-twitter
           = t('.sign_in_with_provider', provider: OmniAuth::Utils.camelize(provider))
         br
