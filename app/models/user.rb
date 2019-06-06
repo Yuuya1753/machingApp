@@ -29,7 +29,7 @@ class User < ApplicationRecord
 
   class << self
     def find_or_create_for_oauth(auth)
-      created_user = find_or_create_by!(name: auth.info.name) do |user|
+      user = find_or_create_by!(uid: auth.uid, provider: auth.provider, name: auth.info.name) do |user|
         user.provider = auth.provider
         user.uid = auth.uid
         user.name = auth.info.name
@@ -38,10 +38,10 @@ class User < ApplicationRecord
         password = Devise.friendly_token[0..5]
         logger.debug password
         user.password = password
+        user.skip_confirmation!
       end
-      created_user.skip_confirmation!
-      created_user.save
-      created_user
+      # user.save
+      user
     end
 
 
