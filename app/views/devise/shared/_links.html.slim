@@ -1,6 +1,7 @@
 .form-group
   - if controller_name != 'sessions'
-    = link_to t(".sign_in"), new_session_path(resource_name)
+    = link_to "メールアドレスで" + t(".sign_in"), new_session_path(resource_name)
+    br
   - if devise_mapping.omniauthable?
     - resource_class.omniauth_providers.each do |provider|
       - case OmniAuth::Utils.camelize(provider)
