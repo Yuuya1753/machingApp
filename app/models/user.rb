@@ -29,7 +29,7 @@ class User < ApplicationRecord
 
   class << self
     def find_or_create_for_oauth(auth)
-      user = find_or_create_by!(name: auth.info.name) do |user|
+      created_user = find_or_create_by!(name: auth.info.name) do |user|
         user.provider = auth.provider
         user.uid = auth.uid
         user.name = auth.info.name
@@ -38,9 +38,9 @@ class User < ApplicationRecord
         logger.debug password
         user.password = password
       end
-      user.skip_confirmation!
-      user.save
-      user
+      created_user.skip_confirmation!
+      created_user.save
+      created_user
     end
 
 
