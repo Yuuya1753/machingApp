@@ -11,7 +11,7 @@
           = t('.sign_in_with_provider', provider: OmniAuth::Utils.camelize(provider))
       - when 'Facebook'
         = link_to omniauth_authorize_path(resource_name, provider), method: :post, class: 'btn btn-social btn-facebook mr-2' do
-          i.fab.fa-twitter
+          i.fab.fa-facebook
           = t('.sign_in_with_provider', provider: OmniAuth::Utils.camelize(provider))
     br
   - if devise_mapping.registerable? && controller_name != 'registrations'
