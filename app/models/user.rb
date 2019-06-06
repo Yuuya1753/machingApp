@@ -34,6 +34,7 @@ class User < ApplicationRecord
         user.uid = auth.uid
         user.name = auth.info.name
         user.email = User.dummy_email(auth)
+        user.image = auth.info.image
         password = Devise.friendly_token[0..5]
         logger.debug password
         user.password = password
