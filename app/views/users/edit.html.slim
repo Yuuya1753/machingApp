@@ -9,8 +9,10 @@ h1 プロフィール編集
 
 = form_with model: @user, local: true do |f|
 	.form-group
-		= f.label :image, 'プロフィール画像'
-		= f.file_field :image, class: 'form-control'
+		= f.label :image, 'プロフィール画像', class: 'd-block'
+		= image_tag @user.image.url(:thumb), class: 'mb-2 ml-5', id: 'image-current'
+		= image_tag "", size: "100x100", class: 'mb-2 ml-5 d-none', id: 'image-prev'
+		= f.file_field :image, class: 'form-control-file d-inline-block', id: 'post-img'
 	.form-group
 		= f.label :name, 'ユーザー名'
 		= f.text_field :name, class: 'form-control'

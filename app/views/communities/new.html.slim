@@ -1,3 +1,5 @@
+= javascript_include_tag "communities"
+
 h1 コミュニティ作成
 
 - if @community.errors.present?
@@ -9,8 +11,10 @@ h1 コミュニティ作成
 	.form-group
 		= f.hidden_field :created_id, value: current_user.id
 	.form-group
-		= f.label :icon, 'コミュニティ画像'
-		= f.file_field :icon, class: 'form-control'
+		= f.label :icon, 'コミュニティ画像', class: 'd-block'
+		= image_tag @community.icon.url(:thumb), class: 'mb-2 ml-5', id: 'image-current'
+		= image_tag "", size: "100x100", class: 'mb-2 ml-5 d-none', id: 'image-prev'
+		= f.file_field :icon, class: 'form-control-file d-inline-block', id: 'post-img'
 	.form-group
 		= f.label :name, 'コミュニティ名'
 		= f.text_field :name, class: 'form-control'

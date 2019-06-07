@@ -12,7 +12,6 @@ class MessagesController < ApplicationController
 
 	def count_message
 		@count = Message.where('id > ? and matching_id = ?', params[:message_id], params[:matching_id]).size
-		p @count
 		return @count
 	end
 

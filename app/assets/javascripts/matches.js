@@ -3,9 +3,9 @@ var interval;
 if(location.pathname.match(pattern)) {
 	$(function () {
 		$(window).scroll(function() {
-			$("#new-message").offset({
-				top: $(this).scrollTop() + $(".app-title").height() + $("#new-message").height(),
-				left: $(".container").offset().left
+			$("#message-header").offset({
+				top: $(this).scrollTop() + $(".app-title").height() + ($("#message-header").height() / 2) - 1,
+				left: $("#message-header").offset().left
 			});
 		});
 

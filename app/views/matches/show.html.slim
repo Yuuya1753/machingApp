@@ -1,8 +1,9 @@
 = stylesheet_link_tag    "matches", media: 'all'
 = javascript_include_tag "matches"
 
-#new-message.text-center.bg-white.d-none
-	= link_to "新しいメッセージがあります。", matches_show_path(@match.id), remote: true
+#message-header.text-center.bg-white.pt-1
+	h3.text-center = @other.name
+	= link_to "新しいメッセージがあります。", matches_show_path(@match.id), remote: true, class: 'd-none', id: 'new-message'
 br
 #message-area
 	= render partial: "matches/message_area"
