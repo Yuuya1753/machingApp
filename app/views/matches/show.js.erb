@@ -1,2 +1,7 @@
 $("#new-message").addClass("d-none");
 $("#message-area").html("<%= j(render partial: "matches/message_area")%>");
+$("#text").val("");
+$("div.count.nav.justify-content-end").text("0 / 255文字");
+var doc = document.documentElement;
+var y = doc.scrollHeight - doc.clientHeight;
+window.scroll(0, y);

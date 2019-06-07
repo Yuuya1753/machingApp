@@ -10,8 +10,12 @@ if(location.pathname.match(pattern)) {
 		});
 
 		$("#text").keyup(function () {
-			var count = $(this).val().replace(/(\r\n|\r|\n)/g, "\r\n").length;
+			var count = $(this).val().replace(/(\r\n|\r|\n)/g, "\n").length;
 			$("div.count.nav.justify-content-end").text(count + " / 255文字");
+			if ($("#text").val().length >= 255) {
+				var text = $("#text").val().substr(0, 255);
+				$("#text").val(text);
+			}
 		});
 
 		interval = setInterval(function() {

@@ -8,7 +8,7 @@ table.table.table-borderless
 					- messageTimeHm = message.created_at.in_time_zone("Tokyo").strftime("%H:%M")
 					- if messageTimeYmd != @beforeTime
 						- @beforeTime = messageTimeYmd
-						.w-100.text-center.border-top
+						.w-100.text-center.border-top.mb-1
 							= messageTimeYmd
 					- if message.speaker_id == current_user.id
 						- if !current_user.image.nil?
