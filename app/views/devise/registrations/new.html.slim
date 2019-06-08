@@ -1,5 +1,7 @@
-h1
-  = "お相手さがし　" + t('.sign_up')
+h1.text-center
+  = "お相手さがし"
+  br
+  = t('.sign_up')
 = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
   = bootstrap_devise_error_messages!
   .form-group

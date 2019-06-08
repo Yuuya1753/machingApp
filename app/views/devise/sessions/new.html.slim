@@ -1,7 +1,9 @@
 //= stylesheet_link_tag    "bootstrap-social", media: 'all'
 
-h1
-  = "お相手さがし　" + t('.sign_in')
+h1.text-center
+  = "お相手さがし"
+  br
+  = t('.sign_in')
 = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
   .form-group
     = f.label :email
