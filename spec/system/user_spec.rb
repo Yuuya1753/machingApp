@@ -18,7 +18,7 @@ RSpec.feature 'ユーザーが', type: :feature do
 				user_2 = FactoryBot.create(:user, name: "テスト2")
 			# end
 			
-			visit search_path
+			visit users_search_path
 			fill_in "ユーザー名",	with: "テスト2"
 			click_button "検索する"
 
