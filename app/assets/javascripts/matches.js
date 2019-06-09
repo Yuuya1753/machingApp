@@ -15,6 +15,9 @@ if(location.pathname.match(pattern)) {
 			if ($("#text").val().length >= 255) {
 				var text = $("#text").val().substr(0, 255);
 				$("#text").val(text);
+				$("div.count.nav.justify-content-end").css("color", "red");
+			} else {
+				$("div.count.nav.justify-content-end").css("color", "black");
 			}
 		});
 

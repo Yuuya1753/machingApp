@@ -1,4 +1,7 @@
-h1 ユーザー検索 条件入力
+h2
+	= "ユーザー検索"
+	br
+	= "条件入力"
 
 = search_form_for @q, url:users_search_path, remote: true, html: { method: :post } do |f|
 	.form-group
