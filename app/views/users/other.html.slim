@@ -39,6 +39,6 @@ table.table
 								.col-md-auto= image_tag community.icon.url(:thumb)
 							.col-md-auto= link_to community.name, community_path(community.id)
 - if @already_like
-	= link_to 'いいね済', '#', class: 'btn btn-secondary disabled mr-3'
+	= link_to 'いいね済', '#', class: 'btn btn-secondary disabled mr-3 mb-3'
 - else
-	= button_to 'いいね！', {controller: 'users', action: 'like'}, {method: :get, params: {id: @user.id}, class: 'btn btn-primary mr-3'}
+	= button_to 'いいね！', {controller: 'users', action: 'like'}, {method: :get, params: {id: @user.id}, class: 'btn btn-primary mr-3 mb-3'}

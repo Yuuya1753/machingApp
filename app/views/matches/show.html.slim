@@ -8,7 +8,7 @@ br
 #message-area
 	= render partial: "matches/message_area"
 
-#form-area.fixed-bottom.bg-white.ml-auto.mr-auto.pb-2
+#form-area.fixed-bottom.bg-white.ml-auto.mr-auto.pb-2.pr-3.pl-3
 	= form_with model: Message.new, remote: true do |f|
 		.form-group
 			= f.hidden_field :matching_id, value: @match.id

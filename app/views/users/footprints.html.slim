@@ -4,16 +4,36 @@ h2 あしあと
 	- @footprints.each do |footprint|
 		- user = User.find(footprint.leave_id)
 		- leave_time = (Time.zone.now - footprint.created_at).floor / 60
-		.d-inline-block.mb-3.mr-3.w-25.border.border-dark.rounded.text-center
+		.d-none.d-lg-inline-block.mb-3.mr-3.w-25.border.border-dark.rounded.text-center
 			- if !user.image.url.nil?
-				.d-inline-block.col-md-auto= link_to image_tag(user.image.url(:thumb)), other_path(user.id)
+				.d-inline-block.col-auto= link_to image_tag(user.image.url(:thumb)), other_path(user.id)
 			- if leave_time >= 1440
-				.d-inline-block.col-md-auto.float-right= "#{leave_time / 1440}日前"
+				.d-inline-block.col-auto.float-right= "#{leave_time / 1440}日前"
 			- elsif leave_time < 1440 && leave_time >= 60
-				.d-inline-block.col-md-auto.float-right= "#{leave_time / 60}時間前"
+				.d-inline-block.col-auto.float-right= "#{leave_time / 60}時間前"
 			- else
-				.d-inline-block.col-md-auto.float-right= "#{leave_time}分前"
-			.col-md-auto.text-left.ml-4.pl-5= link_to user.name, other_path(user.id)
+				.d-inline-block.col-auto.float-right= "#{leave_time}分前"
+			.col-auto.text-left.ml-4.pl-5= link_to user.name, other_path(user.id)
+		.d-none.d-md-inline-block.d-lg-none.mb-3.mr-3.w-25.border.border-dark.rounded
+			- if !user.image.url.nil?
+				.d-inline-block.col-auto.pr-0= link_to image_tag(user.image.url(:thumb), size: '75x75'), other_path(user.id)
+			- if leave_time >= 1440
+				.d-inline-block.col-auto.float-right= "#{leave_time / 1440}日前"
+			- elsif leave_time < 1440 && leave_time >= 60
+				.d-inline-block.col-auto.float-right= "#{leave_time / 60}時間前"
+			- else
+				.d-inline-block.col-auto.float-right= "#{leave_time}分前"
+			.col-auto.text-left.pl-4= link_to user.name, other_path(user.id)
+		.d-inline-block.d-md-none.mb-3.mr-3.w-25.border.border-dark.rounded
+			- if !user.image.url.nil?
+				.d-inline-block.col-auto.pr-0= link_to image_tag(user.image.url(:thumb), size: '50x50'), other_path(user.id)
+			- if leave_time >= 1440
+				.d-inline-block.col-auto.float-right.pl-0= "#{leave_time / 1440}日前"
+			- elsif leave_time < 1440 && leave_time >= 60
+				.d-inline-block.col-auto.float-right.pl-0= "#{leave_time / 60}時間前"
+			- else
+				.d-inline-block.col-auto.float-right.pl-0= "#{leave_time}分前"
+			.col-auto.text-left.pl-3= link_to user.name, other_path(user.id)
 	= paginate @footprints
 - else
 	= "あしあとはありません"

@@ -9,25 +9,25 @@ html
 		= csrf_meta_tags
 
 	body
-		.app-title.navbar.navbar-expand-md.navbar-light.bg-light.sticky-top
+		nav.app-title.navbar.navbar-expand-lg.navbar-light.bg-light.sticky-top
 			- if user_signed_in?
 				.navbar-brand = current_user.name
-
-			ul.navbar-nav.ml-auto
-				- if user_signed_in?
-					li.nav-item.dropdown
-						= link_to 'メニュー', '', class: 'nav-link dropdown-toggle', id: 'navbarDropdown', 'role': 'button', 'data-toggle': 'dropdown', 'aria-haspopup': 'true', 'aria-expanded': 'false'
-						.dropdown-menu.dropdown-menu-right[aria-labelledby='navbarDropdown']
-							= link_to 'HOME', root_path, class: 'dropdown-item'
-							= link_to 'プロフィール確認', user_path(current_user), class: 'dropdown-item'
-							= link_to 'ユーザー検索', users_search_path, class: 'dropdown-item'
-							= link_to 'コミュニティ作成', new_community_path, class: 'dropdown-item'
-							= link_to 'コミュニティ検索', communities_search_path, class: 'dropdown-item'
-							= link_to 'いいね！確認', show_likes_path(current_user), class: 'dropdown-item'
-							= link_to 'メッセージ確認', show_matches_path(current_user), class: 'dropdown-item'
-							= link_to 'あしあと', footprints_path, class: 'dropdown-item'
-							= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'dropdown-item'
-				- else
+			
+				button.navbar-toggler[type='button' data-toggle='collapse' data-target='#Navber' aria-controls='Navber' aria-expanded='false']
+					span.navbar-toggler-icon
+				.collapse.navbar-collapse#Navber.text-right
+					ul.navbar-nav.ml-auto
+							li.nav-item= link_to 'HOME', root_path, class: 'nav-link'
+							li.nav-item= link_to 'プロフィール確認', user_path(current_user), class: 'nav-link'
+							li.nav-item= link_to 'ユーザー検索', users_search_path, class: 'nav-link'
+							li.nav-item= link_to 'コミュニティ作成', new_community_path, class: 'nav-link'
+							li.nav-item= link_to 'コミュニティ検索', communities_search_path, class: 'nav-link'
+							li.nav-item= link_to 'いいね！確認', show_likes_path(current_user), class: 'nav-link'
+							li.nav-item= link_to 'メッセージ確認', show_matches_path(current_user), class: 'nav-link'
+							li.nav-item= link_to 'あしあと', footprints_path, class: 'nav-link'
+							li.nav-item= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link'
+			- else
+				ul.navbar-nav.ml-auto
 					li.nav-item= link_to 'ログイン', new_user_session_path, class: 'nav-link'
 		.container
 			- if flash.notice.present?
