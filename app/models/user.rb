@@ -43,18 +43,5 @@ class User < ApplicationRecord
       # user.save
       user
     end
-
-
-    def dummy_email(auth)
-      "#{auth.uid}-#{auth.provider}@example.com"
-    end
-
-    # def new_with_session(params, session)
-    #   if user_attributes = session['devise.user_attributes']
-    #     new(user_attributes) { |user| user.attributes = params }
-    #   else
-    #     super
-    #   end
-    # end
   end
 end
