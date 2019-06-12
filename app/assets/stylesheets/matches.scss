@@ -2,14 +2,50 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-div#message-area {
-	padding-bottom: 228px;
-}
-
 div.mes {
 	max-width: 50%;
 }
 
 div#form-area {
 	width: 100%;
+}
+
+@media screen and (max-width: 567px) {
+	#text {
+		display: block;
+	}
+	#text-narrow {
+		display: none;
+	}
+
+	div#message-area {
+		padding-bottom: 228px;
+	}
+}
+
+@media screen and (min-width: 568px) and (max-width: 767px) {
+	#text {
+		display: none;
+	}
+	#text-narrow {
+		display: block;
+	}
+
+	div#message-area {
+		padding-bottom: 132px;
+	}
+}
+
+
+@media screen and (min-width: 768px) {
+	#text {
+		display: block;
+	}
+	#text-narrow {
+		display: none;
+	}
+
+	div#message-area {
+		padding-bottom: 228px;
+	}
 }

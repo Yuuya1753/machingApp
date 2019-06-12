@@ -8,12 +8,12 @@ h2
 		- if user.id != current_user.id
 			.d-none.d-md-inline-block.text-center.mb-3.mr-3.w-25.border.border-dark.rounded
 				- if !user.image.url.nil?
-					.col-md-auto= link_to image_tag(user.image.url(:thumb)), other_path(user.id)
-				.col-md-auto= link_to user.name, other_path(user.id)
+					.col-auto= link_to image_tag(user.image.url(:thumb)), other_path(user.id)
+				.col-auto= link_to user.name, other_path(user.id)
 			.d-inline-block.d-md-none.text-center.mb-3.mr-3.w-25.border.border-dark.rounded
 				- if !user.image.url.nil?
-					.col-md-auto= link_to image_tag(user.image.url(:thumb), size: '50x50'), other_path(user.id)
-				.col-md-auto= link_to user.name, other_path(user.id)
+					.col-auto= link_to image_tag(user.image.url(:thumb), size: '50x50'), other_path(user.id)
+				.col-auto.text-break= link_to user.name, other_path(user.id), class: 'pr-1 pl-1'
 	= paginate @users, remote: true
 - else
 	= "該当するユーザーはいません。"

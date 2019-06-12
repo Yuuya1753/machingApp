@@ -8,7 +8,8 @@ h2 マッチング一覧
 			- matching_user = User.find(matching.from_user_id)
 		.d-inline-block.text-center.mb-3.mr-3.w-25.border.border-dark.rounded
 			- if !matching_user.image.url.nil?
-				.d-inline-block.col-md-auto= link_to image_tag(matching_user.image.url(:thumb)), matches_show_path(matching.id)
-			.col-md-auto= link_to matching_user.name, matches_show_path(matching.id)
+				.d-none.d-md-inline-block.col-md-auto= link_to image_tag(matching_user.image.url(:thumb)), matches_show_path(matching.id)
+				.d-inline-block.d-md-none.col-md-auto= link_to image_tag(matching_user.image.url(:thumb), size: '50x50'), matches_show_path(matching.id)
+			.col-auto.text-break= link_to matching_user.name, matches_show_path(matching.id)
 - else
 	= "マッチングしたユーザーはいません。"

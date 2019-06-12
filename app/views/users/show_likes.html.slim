@@ -1,28 +1,29 @@
-.sticky-top
-	h2 いいね！一覧
-	br
-	ul.nav.nav-tabs[role='tablist']
-		li.nav-item= link_to 'いいね！をしたユーザー', '#like_me', class: 'nav-link active', 'role': 'tab', 'data-toggle': 'tab', 'aria-controls': 'like_me', 'aria-selected': true
-		li.nav-item= link_to 'いいね！されたユーザー', '#like_other', class: 'nav-link', 'role': 'tab', 'data-toggle': 'tab', 'aria-controls': 'like_other', 'aria-selected': false
-	
-	.tab-content.mt-3
-		#like_me.tab-pane.active[role='tabpanel' aria-labelledby='like_me-tab']
-			/ = "いいね！をしたユーザー"
-			- if @like_me_count > 0
-				- current_user.like_others.each do |like_other|
-					.d-inline-block.text-center.mb-3.mr-3.w-25.border.border-dark.rounded
-							- if !like_other.image.url.nil?
-								.col-md-auto= link_to image_tag(like_other.image.url(:thumb)), other_path(like_other.id)
-							.col-md-auto= link_to like_other.name, other_path(like_other.id)
-			- else
-				= "いいね！をしたユーザーはいません。"
-		#like_other.tab-pane[role='tabpanel' aria-labelledby='like_other-tab']
-			/ = "いいね！されたユーザー"
-			- if @like_other_count > 0
-				- current_user.like_us.each do |like_me|
-					.d-inline-block.text-center.mb-3.mr-3.w-25.border.border-dark.rounded
-							- if !like_me.image.url.nil?
-								.col-md-auto= link_to image_tag(like_me.image.url(:thumb)), other_path(like_me.id)
-							.col-md-auto= link_to like_me.name, other_path(like_me.id)
-			- else
-				= "いいね！されたユーザーはいません。"
+h2 いいね！一覧
+br
+ul.nav.nav-tabs[role='tablist']
+	li.nav-item.w-50= link_to 'いいね！をしたユーザー', '#like_me', class: 'nav-link active', 'role': 'tab', 'data-toggle': 'tab', 'aria-controls': 'like_me', 'aria-selected': true
+	li.nav-item.w-50= link_to 'いいね！されたユーザー', '#like_other', class: 'nav-link', 'role': 'tab', 'data-toggle': 'tab', 'aria-controls': 'like_other', 'aria-selected': false
+
+.tab-content.mt-3
+	#like_me.tab-pane.active[role='tabpanel' aria-labelledby='like_me-tab']
+		/ = "いいね！をしたユーザー"
+		- if @like_me_count > 0
+			- current_user.like_others.each do |like_other|
+				.d-inline-block.text-center.mb-3.mr-3.w-25.border.border-dark.rounded
+						- if !like_other.image.url.nil?
+							.d-none.d-md-inline-block.col-auto= link_to image_tag(like_other.image.url(:thumb)), other_path(like_other.id)
+							.d-inline-block.d-md-none.col-auto= link_to image_tag(like_other.image.url(:thumb), size: '50x50'), other_path(like_other.id)
+						.col-auto= link_to like_other.name, other_path(like_other.id)
+		- else
+			= "いいね！をしたユーザーはいません。"
+	#like_other.tab-pane[role='tabpanel' aria-labelledby='like_other-tab']
+		/ = "いいね！されたユーザー"
+		- if @like_other_count > 0
+			- current_user.like_us.each do |like_me|
+				.d-inline-block.text-center.mb-3.mr-3.w-25.border.border-dark.rounded
+						- if !like_me.image.url.nil?
+							.d-none.d-md-inline-block.col-auto= link_to image_tag(like_me.image.url(:thumb)), other_path(like_me.id)
+							.d-inline-block.d-md-none.col-auto= link_to image_tag(like_me.image.url(:thumb), size: '50x50'), other_path(like_me.id)
+						.col-auto= link_to like_me.name, other_path(like_me.id)
+		- else
+			= "いいね！されたユーザーはいません。"

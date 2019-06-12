@@ -7,12 +7,12 @@ h2
 	- @communities.each do |community|
 		.d-none.d-md-inline-block.text-center.mb-3.mr-3.w-25.border.border-dark.rounded
 			- if !community.icon.url.nil?
-				.col-md-auto= link_to image_tag(community.icon.url(:thumb)), community
-			.col-md-auto= link_to community.name, community
+				.col-auto= link_to image_tag(community.icon.url(:thumb)), community
+			.col-auto= link_to community.name, community
 		.d-inline-block.d-md-none.text-center.mb-3.mr-3.w-25.border.border-dark.rounded
 			- if !community.icon.url.nil?
-				.col-md-auto= link_to image_tag(community.icon.url(:thumb), size: '50x50'), community
-			.col-md-auto= link_to community.name, community
+				.col-auto= link_to image_tag(community.icon.url(:thumb), size: '50x50'), community
+			.col-auto.text-break= link_to community.name, community
 - else
 	= "該当するコミュニティはありません。"
 br

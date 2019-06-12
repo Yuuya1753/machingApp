@@ -1,43 +1,12 @@
-h2 = @user.name + "さんのプロフィール"
+h2.d-none.d-md-inline-block
+	= @user.name + "さんのプロフィール"
+h2.d-inline-block.d-md-none
+	= @user.name + "さんの"
+	br
+	= "プロフィール"
 
-table.table
-	tbody
-		tr.row
-			th.col-md-2= User.human_attribute_name(:image)
-			- if !@user.image.url.nil?
-				td.col-md-10= image_tag @user.image.url(:thumb200)
-		tr.row
-			th.col-md-2= User.human_attribute_name(:name)
-			td.col-md-10= @user.name
-		tr.row
-			th.col-md-2= User.human_attribute_name(:age)
-			td.col-md-10= @user.age
-		tr.row
-			th.col-md-2= User.human_attribute_name(:blood_type)
-			td.col-md-10= @user.blood_type
-		tr.row
-			th.col-md-2= User.human_attribute_name(:address)
-			td.col-md-10= @user.address
-		tr.row
-			th.col-md-2= User.human_attribute_name(:birthplace)
-			td.col-md-10= @user.birthplace
-		tr.row
-			th.col-md-2= User.human_attribute_name(:job)
-			td.col-md-10= @user.job
-		tr.row
-			th.col-md-2= User.human_attribute_name(:hobby)
-			td.col-md-10= @user.hobby
-		tr.row
-			th.col-md-2= User.human_attribute_name(:self_introduction)
-			td.col-md-10= simple_format(h(@user.self_introduction), {}, sanitize: false, wrapper_tag: "div")
-		tr.row
-			th.col-md-2= '参加コミュニティ'
-			td.col-md-10
-				- @user.communities.each do |community|
-						.d-inline-block.text-center.mb-3.mr-3.w-25.border.border-dark.rounded
-							- if !community.icon.url.nil?
-								.col-md-auto= image_tag community.icon.url(:thumb)
-							.col-md-auto= link_to community.name, community_path(community.id)
+= render partial: "users/show_form"
+
 - if @already_like
 	= link_to 'いいね済', '#', class: 'btn btn-secondary disabled mr-3 mb-3'
 - else

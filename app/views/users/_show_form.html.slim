@@ -1,0 +1,40 @@
+table.table.table-borderless
+	tbody
+		tr.row.border-bottom
+			th.col-5.col-md-2= User.human_attribute_name(:image)
+			- if !@user.image.url.nil?
+				td.d-none.d-md-inline-block.col-md-10= image_tag @user.image.url(:thumb200)
+				td.d-inline-block.d-md-none.col-7= image_tag @user.image.url(:thumb)
+		tr.row.border-bottom
+			th.col-5.col-md-2= User.human_attribute_name(:name)
+			td.col-7.col-md-10= @user.name
+		tr.row.border-bottom
+			th.col-5.col-md-2= User.human_attribute_name(:age)
+			td.col-7.col-md-10= @user.age
+		tr.row.border-bottom
+			th.col-5.col-md-2= User.human_attribute_name(:blood_type)
+			td.col-7.col-md-10= @user.blood_type
+		tr.row.border-bottom
+			th.col-5.col-md-2= User.human_attribute_name(:address)
+			td.col-7.col-md-10= @user.address
+		tr.row.border-bottom
+			th.col-5.col-md-2= User.human_attribute_name(:birthplace)
+			td.col-7.col-md-10= @user.birthplace
+		tr.row.border-bottom.border-bottom
+			th.col-5.col-md-2= User.human_attribute_name(:job)
+			td.col-7.col-md-10= @user.job
+		tr.row.border-bottom
+			th.col-5.col-md-2= User.human_attribute_name(:hobby)
+			td.col-7.col-md-10= @user.hobby
+		tr.row.border-bottom
+			th.col-5.col-md-2= User.human_attribute_name(:self_introduction)
+			td.col-7.col-md-10= simple_format(h(@user.self_introduction), {}, sanitize: false, wrapper_tag: "div")
+		tr.row.border-bottom
+			th.col-6.col-md-2= '参加コミュニティ'
+			td.col-12.col-md-10
+				- @user.communities.each do |community|
+						.d-inline-block.text-center.mb-3.mr-3.w-25.border.border-dark.rounded
+							- if !community.icon.url.nil?
+								.d-none.d-md-inline-block.col-auto= image_tag community.icon.url(:thumb)
+								.d-inline-block.d-md-none.col-auto= image_tag community.icon.url(:thumb), size: '50x50'
+							.col-auto.text-break= link_to community.name, community_path(community.id)

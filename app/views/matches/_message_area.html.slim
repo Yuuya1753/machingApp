@@ -16,7 +16,7 @@ table.table.table-borderless
 								= image_tag current_user.image.url(:thumb), size: "50x50"
 						div class="mes mr-1 ml-1 text-right border border-dark rounded float-right"
 							p.id.d-none = message.id
-							= simple_format(message.text, align: 'left', class: 'mb-0 pr-1 pl-1')
+							= simple_format(message.text, align: 'left', class: 'mb-0 pr-1 pl-1 text-break')
 						.float-right = messageTimeHm
 						/ tr
 						/ 	td.speaker-name.text-right.float-right.pt-0
@@ -28,7 +28,7 @@ table.table.table-borderless
 								= link_to image_tag(speaker.image.url(:thumb), size: "50x50"), other_path(speaker.id)
 						div class="mes mr-1 ml-1 text-left border border-dark rounded float-left"
 							p.id.d-none = message.id
-							= simple_format(message.text, class: 'mb-0 pr-1 pl-1')
+							= simple_format(message.text, class: 'mb-0 pr-1 pl-1 text-break')
 						.float-left = messageTimeHm
 						/ tr
 						/ 	td.speaker-name.text-left.float-left.pt-0

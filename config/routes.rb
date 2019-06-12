@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get '/uploads/user/image/:id/:file', :controller => 'users', :action => 'download'
-  get '/uploads/community/image/:id/:file', :controller => 'communities', :action => 'download'
+  get '/uploads/community/icon/:id/:file', :controller => 'communities', :action => 'download'
   get 'matches/show/:id', to: 'matches#show', as: 'matches/show'
   post 'messages/count_message'
   post 'messages/new_display'
