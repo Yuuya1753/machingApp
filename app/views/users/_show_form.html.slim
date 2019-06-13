@@ -3,8 +3,8 @@ table.table.table-borderless
 		tr.row.border-bottom
 			th.col-5.col-md-2= User.human_attribute_name(:image)
 			- if !@user.image.url.nil?
-				td.d-none.d-md-inline-block.col-md-10= image_tag @user.image.url(:thumb200)
-				td.d-inline-block.d-md-none.col-7= image_tag @user.image.url(:thumb)
+				td.d-none.d-md-inline-block.col-md-10= image_tag @user.image.url(:thumb200), size: '200x200'
+				td.d-inline-block.d-md-none.col-7= image_tag @user.image.url(:thumb), size: '100x100'
 		tr.row.border-bottom
 			th.col-5.col-md-2= User.human_attribute_name(:name)
 			td.col-7.col-md-10= @user.name

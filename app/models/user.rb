@@ -34,7 +34,11 @@ class User < ApplicationRecord
         user.uid = auth.uid
         user.name = auth.info.name
         user.email = User.dummy_email(auth)
-        user.image = auth.info.image
+        if auth.provider == 'facebook'
+          user.remote_image_url = "http://graph.facebook.com/#{auth.uid}/picture?type=large"
+        else
+          user.remote_image_url = auth.info.image
+        end
         password = Devise.friendly_token[0..5]
         logger.debug password
         user.password = password
@@ -42,6 +46,10 @@ class User < ApplicationRecord
       end
       # user.save
       user
+    end
+
+    def dummy_email(auth)
+      "#{auth.uid}-#{auth.provider}@example.com"
     end
   end
 end

@@ -262,11 +262,11 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   if Rails.env.production?
-    config.omniauth :twitter, ENV['TWITTER_API_ID'], ENV['TWITTER_API_SECRET']
-    config.omniauth :facebook, ENV['FACEBOOK_API_ID'], ENV['FACEBOOK_API_SECRET']
+    config.omniauth :twitter, ENV['TWITTER_API_ID'], ENV['TWITTER_API_SECRET'], { secure_image_url: 'true', image_size: 'original' }
+    config.omniauth :facebook, ENV['FACEBOOK_API_ID'], ENV['FACEBOOK_API_SECRET'], { secure_image_url: 'true', image_size: 'original' }
   else
-    config.omniauth :twitter, ENV['TWITTER_API_ID_DEV'], ENV['TWITTER_API_SECRET_DEV']
-    config.omniauth :facebook, ENV['FACEBOOK_API_ID_DEV'], ENV['FACEBOOK_API_SECRET_DEV']
+    config.omniauth :twitter, ENV['TWITTER_API_ID_DEV'], ENV['TWITTER_API_SECRET_DEV'], { secure_image_url: 'true', image_size: 'original' }
+    config.omniauth :facebook, ENV['FACEBOOK_API_ID_DEV'], ENV['FACEBOOK_API_SECRET_DEV'], { secure_image_url: 'true', image_size: 'original' }
   end
 
   # ==> Warden configuration
