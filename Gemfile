@@ -78,7 +78,7 @@ gem 'devise-i18n-views'
 
 gem 'jquery-rails'
 
-gem 'carrierwave', '~> 1.0'
+gem 'carrierwave', '~> 1.3'
 gem 'fog-aws'
 
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
